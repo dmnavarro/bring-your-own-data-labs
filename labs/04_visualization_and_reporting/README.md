@@ -1,7 +1,8 @@
 [0-Prerequisites](../00_Prerequisites/README.md) > [1-Ingestion](../01_ingestion_with_glue/README.md) > [2-Orchestration](../02_orchestration/README.md) > [3-Interactive-SQL](../03_interactive_sql_queries/README.md) > 4-Visualisation > [5-Transformations](../05_transformations/README.md) > [99-Conclusion](../99_Wrap_up_and_clean/README.md)
 
 # Lab 4: Visualization using Amazon QuickSight
-
+- [Introduction to Quicksight](#introduction-to-quicksight)
+- [How It Works](#how-it-works)
 - [Architectural Diagram](#architectural-diagram)
 - [Signing up for Amazon QuickSight Enterprise Edition](#signing-up-for-amazon-quicksight-enterprise-edition)
 - [Some Quicksight definitions](#some-quicksight-definitions)
@@ -13,6 +14,21 @@
   - [Visualize Month over Month Quantity](#visualize-month-over-month-quantity)
   - [Review ML Insights](#review-ml-insights)
 - [License](#license)
+
+## <a name="introduction-to-quicksight"> Introduction to Quicksight</a>
+
+Amazon QuickSight is a fast, cloud-powered business intelligence service that makes it easy to deliver insights to everyone in your organization.
+
+As a fully managed service, QuickSight lets you easily create and publish interactive dashboards that include ML Insights. Dashboards can then be accessed from any device, and embedded into your applications, portals, and websites.
+
+With our Pay-per-Session pricing, QuickSight allows you to give everyone access to the data they need, while only paying for what you use.
+
+Amazon QuickSight is built with "SPICE" – a Super-fast, Parallel, In-memory Calculation Engine. Built from the ground up for the cloud, SPICE uses a combination of columnar storage, in-memory technologies enabled through the latest hardware innovations and machine code generation to run interactive queries on large datasets and get rapid responses. 
+
+
+## <a name="how-it-works"> How It Works</a>
+
+![image](https://d1.awsstatic.com/r2018/h/QuickSight%20Q/How%20QuickSight%20Works_without%20Q_final.026e51297c1fa18b850ce2ffc1575a9124bbad16.png)
 
 ## Architectural Diagram
 ![architecture-overview-lab2.png](https://s3.amazonaws.com/us-east-1.data-analytics/labcontent/reinvent2017content-abd313/lab2/architecture-overview-lab2.png)
