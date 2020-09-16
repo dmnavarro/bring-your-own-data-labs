@@ -5,7 +5,8 @@
 - [How It Works](#how-it-works)
 - [Architectural Diagram](#architectural-diagram)
 - [Signing up for Amazon QuickSight Enterprise Edition](#signing-up-for-amazon-quicksight-enterprise-edition)
-- [Some Quicksight definitions](#some-quicksight-definitions)
+- [Associating Your S3 Buckets](#associating-your-S3-buckets)
+- [Some Quicksight Definitions](#some-quicksight-definitions)
 - [Configuring Amazon QuickSight to use Amazon Athena as data source](#configuring-amazon-quicksight-to-use-amazon-athena-as-data-source)
 - [Preparing your data](#preparing-your-data)
 - [Visualizing the data using Amazon QuickSight](#visualizing-the-data-using-amazon-quicksight)
@@ -42,6 +43,8 @@ In this lab you will be using the S3 bucket with your data and the Athena table 
 > Both editions offer a full set of features for creating and sharing data visualizations.
 > But Enterprise edition offers additional features such as encryption at rest and Microsoft Active Directory integration.
 
+<p align="center"><img src="img/byod-04-registration-ed.gif"></p>
+
 1. Open the [AWS Management Console for QuickSight](https://us-east-1.quicksight.aws.amazon.com/sn/start).
 
 ![image](https://s3.amazonaws.com/us-east-1.data-analytics/labcontent/reinvent2017content-abd313/lab2/qsimage1.PNG)
@@ -57,48 +60,56 @@ In this lab you will be using the S3 bucket with your data and the Athena table 
 ![image](img/enterprise.png)
 
 4. On the next page, fill up the following items
+   - For this workshop, we will be using Role Based Federation (SSO), make sure that the option **Role Based Federation (SSO)** is toggled.
+   - Choose the **Region** where your data is located. 
+   
+   > **Tip:** It is better to choose the AWS region you want to utilize for your default SPICE capacity. This is where your account’s free SPICE capacity is allocated after signing up. Note that you aren't able to change the default capacity region later, but you can always purchase additional SPICE capacity in different regions as needed.
 
    - Enter a unique **QuickSight account name.** Your account name can only contain characters (A–Z and a–z), digits (0–9), and hyphens (-).
    - Enter a valid email for **Notification email address**. The email that you register here will receive Amazon QuickSight service and usage notifications.
-   - Choose the **Region** where your data is located. 
-   > **Tip:** It is better to choose the AWS region you want to utilize for your default SPICE capacity. This is where your account’s free SPICE capacity is allocated after signing up. Note that you aren't able to change the default capacity region later, but you can always purchase additional SPICE capacity in different regions as needed. Just for this step, leave the **QuickSight capacity region** as **N.Virginia**. 
-
    - Ensure that **Enable autodiscovery of your data and users in your Amazon Redshift, Amazon RDS and AWS IAM Services** and **Amazon Athena** boxes are checked. You can change these options later in Manage Account.
 
    - Review your entries and **Click Finish**. 
 
    ![image](img/new-account-fields.png)
 
-   - You will be presented with a message that says **Congratulations**! **You are signed up for Amazon QuickSight!** on successful sign up. Click on **Go to Amazon QuickSight** to be directed to the QuickSight Dashboard. 
+5. You will be presented with a message that says **Congratulations**! **You are signed up for Amazon QuickSight!** on successful sign up. Click on **Go to Amazon QuickSight** to be directed to the QuickSight Dashboard. 
    
-## Associating Your S3 Buckets
+## <a name="associating-your-S3-buckets">Associating Your S3 Buckets</a>
 
-> Before continuing with the following steps, make sure you are in the N. Virginia Region to edit permissions.**
+1. In the Amazon QuickSight dashboard, navigate to User Settings by clicking on the user icon located at the top-right section of the page. A drop down menu should show up. Under English (or your preffered language) you should be able to see the region where you are in. If it's not in N.Virginia, hover over the region name and choose N.Virginia. 
 
-Now, on the Amazon QuickSight dashboard, navigate to User Settings page by clicking on the Top-Right section - see image below - and click **Manage QuickSight**.
+> Since we are using an Enterprise Edition, in order to manage your account settings, you must temporarily change your region for your session to **US East (N. Virginia) Region**. You can change it back to the region where your data is located when you have finished editing your account settings. These settings include changing your subscription's notification email, enabling IAM access requests, editing access to AWS resources, and unsubscribing from Amazon QuickSight.
 
-   ![image](img/quicksight-first-page.png)
+<p align="center"><img src="img/Quicksight-region.png"></p>
 
-7. In this section, click on **Security & permissions** and then click **Add or remove**.
+2. Once you made sure that you are in N.Virginia region, click **Manage QuickSight** under the User Settings. 
+
+<p align="center"><img src="img/Manage-Quicksight.png" width="300"></p>
+
+3. Once you are redirected to the Admin Dashboard, In the navigation pane on the left side, click on **Security & permissions** and then click **Add or remove** under the "QuickSight access to AWS services" section.
 
 <p align="center"><img src="img/updated1.png" /></p> 
 
-8. Click on **Amazon S3** and on the tab that says **S3 buckets linked to QuickSight account**.
-9. You have two options depending on the permissions of your account:
-  a. Choose **Select All** if you have permissions on all S3 folders
-  b. Choose the following two buckets:
-    i. The S3 bucket(s) you store your data
-    ii. The S3 bucket that that you store Athena query results.
-  
-NOTE: Make sure to tick the boxes for "Write permission for Athena Workgroup" as well.  
+4. Tick the checkbox beside **Amazon S3**. This should open a pop-up page. 
 
-10. Click on **Select buckets**.
+  <p align="center"><img src="img/Quicksight-s3-associate.png" width="500"/></p> 
 
-![image](img/qs-workgroup-permission.png)
+   Click on the tab that says **S3 Buckets Linked to QuickSight account**.
+   On the group box, you'll be able to select the buckets that you want QuickSight to access.
+   
+   You have two options to approach this:
+   - Choose **Select All** if you want to associate all S3 folders to QuickSight. 
+   - Choose only the buckets where: 
+      - You store your raw data
+      - You store your Athena query results (from the previous lab)
+      
+      <p align="center"><img src="img/qs-workgroup-permission.png" width="500"/></p> 
+> NOTE: Make sure to tick the boxes for "Write permission for Athena Workgroup" as well.  
 
-12. When you are done doing all this, click **Update** to bring you back to the user settings back.
+5. When you are done doing all this, click **Update** to bring you back to the user settings back.
 
-## Some Quicksight definitions
+## Some Quicksight Definitions
 
 **What is a data source and what is a dataset?**
 
