@@ -38,36 +38,42 @@ In this lab you will be using the S3 bucket with your data and the Athena table 
 
 ## Signing up for Amazon QuickSight Enterprise Edition
 
+> Amazon QuickSight offers Standard and Enterprise editions.
+> Both editions offer a full set of features for creating and sharing data visualizations.
+> But Enterprise edition offers additional features such as encryption at rest and Microsoft Active Directory integration.
+
 1. Open the [AWS Management Console for QuickSight](https://us-east-1.quicksight.aws.amazon.com/sn/start).
 
 ![image](https://s3.amazonaws.com/us-east-1.data-analytics/labcontent/reinvent2017content-abd313/lab2/qsimage1.PNG)
 
-2. If this is the first time you are accessing QuickSight, you will see a sign-up landing page for QuickSight. 
-3. Click on **Sign up for QuickSight**.
+> **Note:** If this is the first time you are accessing QuickSight, you will see a sign-up landing page for QuickSight.
 
-> **Note:** Chrome browser might timeout at this step. If that's the case, try this step in Firefox/Microsoft Edge/Safari.
+2. Click on **Sign up for QuickSight**. Your AWS account number is displayed here as well for verification purposes.
 
-4. On the next page, for the subscription type select the **"Enterprise Edition"** and click **Continue**. 
+> **Note:** There are some cases where-in Chrome browser might timeout at this step. If that's the case, try this step in Firefox/Microsoft Edge/Safari.
+
+3. On the next page, for the subscription type select the **"Enterprise Edition"** and click **Continue**. 
 
 ![image](img/enterprise.png)
 
-5. On the next page,
+4. On the next page, fill up the following items
 
-   i. Enter a unique **QuickSight account name.**
+   - Enter a unique **QuickSight account name.** Your account name can only contain characters (A–Z and a–z), digits (0–9), and hyphens (-).
+   - Enter a valid email for **Notification email address**. The email that you register here will receive Amazon QuickSight service and usage notifications.
+   - Choose the **Region** where your data is located. 
+   > **Tip:** It is better to choose the AWS region you want to utilize for your default SPICE capacity. This is where your account’s free SPICE capacity is allocated after signing up. Note that you aren't able to change the default capacity region later, but you can always purchase additional SPICE capacity in different regions as needed. Just for this step, leave the **QuickSight capacity region** as **N.Virginia**. 
 
-   ii. Enter a valid email for **Notification email address**.
+   - Ensure that **Enable autodiscovery of your data and users in your Amazon Redshift, Amazon RDS and AWS IAM Services** and **Amazon Athena** boxes are checked. You can change these options later in Manage Account.
 
-   iii. Just for this step, leave the **QuickSight capacity region** as **N.Virginia**. 
-
-   iv. Ensure that **Enable autodiscovery of your data and users in your Amazon Redshift, Amazon RDS and AWS IAM Services** and **Amazon Athena** boxes are checked. 
-
-   v. **Click Finish**. 
+   - Review your entries and **Click Finish**. 
 
    ![image](img/new-account-fields.png)
 
-   vi. You will be presented with a message **Congratulations**! **You are signed up for Amazon QuickSight!** on successful sign up. Click on **Go to Amazon QuickSight**. 
+   - You will be presented with a message that says **Congratulations**! **You are signed up for Amazon QuickSight!** on successful sign up. Click on **Go to Amazon QuickSight** to be directed to the QuickSight Dashboard. 
+   
+## Associating Your S3 Buckets
 
-6. **Before continuing with the following steps, make sure you are in the N. Virginia Region to edit permissions.**
+> Before continuing with the following steps, make sure you are in the N. Virginia Region to edit permissions.**
 
 Now, on the Amazon QuickSight dashboard, navigate to User Settings page by clicking on the Top-Right section - see image below - and click **Manage QuickSight**.
 
