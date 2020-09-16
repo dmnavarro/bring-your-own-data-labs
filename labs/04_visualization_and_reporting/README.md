@@ -34,9 +34,7 @@ Amazon QuickSight is built with "SPICE" – a Super-fast, Parallel, In-memory Ca
 ## Architectural Diagram
 ![architecture-overview-lab2.png](https://s3.amazonaws.com/us-east-1.data-analytics/labcontent/reinvent2017content-abd313/lab2/architecture-overview-lab2.png)
 
-
-In this lab you will be using the S3 bucket with your data and the Athena table you created in the previous lab.
-
+#### In this lab you will be using the S3 bucket with your data and the Athena table you created in the previous lab.
 ## Signing up for Amazon QuickSight Enterprise Edition
 
 > Amazon QuickSight offers Standard and Enterprise editions.
@@ -46,18 +44,16 @@ In this lab you will be using the S3 bucket with your data and the Athena table 
 <p align="center"><img src="img/byod-04-registration-ed.gif"></p>
 
 1. Open the [AWS Management Console for QuickSight](https://us-east-1.quicksight.aws.amazon.com/sn/start).
+<p align="center"><img src="https://s3.amazonaws.com/us-east-1.data-analytics/labcontent/reinvent2017content-abd313/lab2/qsimage1.PNG" width="700"></p>
 
-![image](https://s3.amazonaws.com/us-east-1.data-analytics/labcontent/reinvent2017content-abd313/lab2/qsimage1.PNG)
-
-> **Note:** If this is the first time you are accessing QuickSight, you will see a sign-up landing page for QuickSight.
+> If this is the first time you are accessing QuickSight, you will see a sign-up landing page for QuickSight.
 
 2. Click on **Sign up for QuickSight**. Your AWS account number is displayed here as well for verification purposes.
 
-> **Note:** There are some cases where-in Chrome browser might timeout at this step. If that's the case, try this step in Firefox/Microsoft Edge/Safari.
+> There are some cases where-in Chrome browser might timeout at this step. If that's the case, try this step in Firefox/Microsoft Edge/Safari.
 
 3. On the next page, for the subscription type select the **"Enterprise Edition"** and click **Continue**. 
-
-![image](img/enterprise.png)
+<p align="center"><img src="img/enterprise.png" width="900"></p>
 
 4. On the next page, fill up the following items
    - For this workshop, we will be using Role Based Federation (SSO), make sure that the option **Role Based Federation (SSO)** is toggled.
@@ -71,17 +67,18 @@ In this lab you will be using the S3 bucket with your data and the Athena table 
 
    - Review your entries and **Click Finish**. 
 
-   ![image](img/new-account-fields.png)
+  <p align="center"><img src="img/new-account-fields.png" width="900"></p>
 
 5. You will be presented with a message that says **Congratulations**! **You are signed up for Amazon QuickSight!** on successful sign up. Click on **Go to Amazon QuickSight** to be directed to the QuickSight Dashboard. 
    
 ## <a name="associating-your-S3-buckets">Associating Your S3 Buckets</a>
+<p align="center"><img src="img/byod-04-associatings3-ed.gif"></p>
 
 1. In the Amazon QuickSight dashboard, navigate to User Settings by clicking on the user icon located at the top-right section of the page. A drop down menu should show up. Under English (or your preffered language) you should be able to see the region where you are in. If it's not in N.Virginia, hover over the region name and choose N.Virginia. 
 
 > Since we are using an Enterprise Edition, in order to manage your account settings, you must temporarily change your region for your session to **US East (N. Virginia) Region**. You can change it back to the region where your data is located when you have finished editing your account settings. These settings include changing your subscription's notification email, enabling IAM access requests, editing access to AWS resources, and unsubscribing from Amazon QuickSight.
 
-<p align="center"><img src="img/Quicksight-region.png"></p>
+<p align="center"><img src="img/Quicksight-region.png" width="900" ></p>
 
 2. Once you made sure that you are in N.Virginia region, click **Manage QuickSight** under the User Settings. 
 
@@ -129,8 +126,8 @@ A **dashboard** is a read-only snapshot of an analysis that you can share with o
 ## Configuring Amazon QuickSight to use Amazon Athena as data source
 
 > For this lab, you will need to choose the region where your data resides. 
+<p align="center"><img src="img/oregon.png" width="800"/></p> 
 
-![image](img/oregon.png)
 
 1. Click on the region icon on the top-right corner of the page, and select the region where your data resides. 
 
@@ -139,14 +136,13 @@ A **dashboard** is a read-only snapshot of an analysis that you can share with o
 3. Click on **New dataset** on the top-right corner of the web page and review the options. 
 
 4. Select **Athena** as a Data source.
+<p align="center"><img src="img/connectors.png" width="800"/></p> 
 
-![image](img/connectors.png)
 
 5. Enter the **Data source** **name** (e.g. *AthenaDataSource*).
 
 6. Select the Athena **workgroup** you created specifically for QuickSight. Then **Validate the Connection**.
-
-![image](img/AthenaWorkGroup_DataSource.png)
+<p align="center"><img src="img/AthenaWorkGroup_DataSource.png" width="600"/></p> 
 
 7. Click **Create data source**.
 
@@ -165,13 +161,13 @@ You can choose to create a dataset using S3 as your data source. For this:
 ## Preparing your data
 
 1. You can edit an existing data set to perform data preparation. To edit a data set from the **Analysis page**, choose the small edit icon in the top left above <b>Fields list</b>. The data set opens in the data preparation page.
+<p align="center"><img src="img/edit-dataset-icon.png" width="800"/></p> 
 
-![image](img/edit-dataset-icon.png)
 
 <!---You can duplicate an existing data set to save a copy of it with a new name. The new data set is a completely separate copy.  Choose **Duplicate** data set, and enter a name for the copy.--->
 
 2. Select the fields that you will use for the visualization.
-![image](img/Select_Fields.png)
+<p align="center"><img src="img/Select_Fields.png" width="300"/></p> 
 
 3. We suggest that you pick two - three columns from your data set that meet the following criteria:
   * The first column is a date column (can be year, month or day. Usually marked by **calendar icon**
@@ -181,28 +177,32 @@ marked by a **green hash #**)
   * The third column has categorical value, which means it has specific limited set of values (type,
 category, etc. Usually marked by **ticket icon**)
 
-4. Optional - Change the data type. You can change the field's data type in one of the available data types.
+4. **OPTIONAL** - Change the data type. You can change the field's data type in one of the available data types.
 <!---  
   * Go to the datasets page
 ![image](img/manage-data.png)
 
   * Choose your dataset
-![image](img/choose-dataset.png)
+  <p align="center"><img src="img/choose-dataset.png" width="600"/></p> 
+
 
   * Choose to Edit your Dataset
-![image](img/Edit-dataset.png)
+    <p align="center"><img src="img/Edit-dataset.png" width="600"/></p> 
 --->
   * Press over the arrow on the right side of the field you want to modify
-![image](img/arrow-edit-dataset-type.png)
+  <p align="center"><img src="img/arrow-edit-dataset-type.png" width="600"/></p> 
 
   * Choose one of the available data types
-![image](img/Field_DataTypes.png)
+  <p align="center"><img src="img/Field_DataTypes.png" width="400"/></p> 
+
 
   * Once you finish your edit, press the **Save and Visualize** button on top of the screen.
-![image](img/save-visualize.png)
+  <p align="center"><img src="img/save-visualize.png" width="800"/></p> 
+
    
    You can modify the **format of your date field(s)** into one of the supported formats.
-![image](img/DateFormat.png)
+   <p align="center"><img src="img/DateFormat.png" width="600"/></p> 
+
 
 
 
@@ -227,14 +227,14 @@ column to populate X-axis by year, month or day.
 5. Select **Aggregate:Month** to aggregate by month.
 
 You can also use the slider on the X-axis to select the range of values to appear in the graph.
+<p align="center"><img src="img/prepare-forecast.png" width="900"/></p> 
 
-![image](img/prepare-forecast.png)
 
 6. Click arrow in top right corner of the visual and select **Add forecast**.
+<p align="center"><img src="img/forecast.png" width="900"/></p> 
 
-![image](img/forecast.png)
+<p align="center"><img src="img/end.png" width="900"/></p> 
 
-![image](img/end.png)
 
 **NOTE:** Make sure your Y-axis is assigned to a quantity column before proceeding.
 
@@ -245,16 +245,16 @@ Let's apply a date filter:
 
 1. Choose **Filter** on the tool bar.
 2. On the **Applied filters** pane, choose **Create one**, and then choose a date field to filter on.
-![image](img/filter_creation.png)
+<p align="center"><img src="img/filter_creation.png" width="400"/></p> 
 
 3. Choose in which visual the filter will apply and choose the filter type from the dropdown list.
-![image](img/filter_selection.png)
+<p align="center"><img src="img/filter_selection.png" width="400"/></p> 
 
 4. Choose a comparison type.
-![image](img/filter_comparison_type.png)
+<p align="center"><img src="img/filter_comparison_type.png" width="400"/></p> 
 
 5. Enter date values.
-![image](img/time_range.png)
+<p align="center"><img src="img/time_range.png" width="400"/></p> 
 
 6. Choose Apply.
 
@@ -263,27 +263,24 @@ Let's apply a date filter:
 1. Add a new visual by duplicating the previous visual. Click on visual top right arrow and select **Duplicate visual**.
 2. Select **KPI** as the Visual Type (bottom left of the screen).
 3. In the field wells, click arrow in **Date** column to change the aggregation level to Month or as needed.
-
-![image](img/kpi.png)
+<p align="center"><img src="img/kpi.png" width="600"/></p> 
 
 1. Now select format visual by clicking on arrow on top right corner of the KPI graph.
 2. Select **Different as percent(%)** under **comparison method** on the left.
-
-![image](img/kpi-percent.png)
+<p align="center"><img src="img/kpi-percent.png" width="600"/></p> 
 
 
 ### Review ML Insights
 
 1. Click the ‘Insights’ menu on the left. Notice all the suggested insights QuickSight has generated based on what has been built so far!
 2. Hover over any of the insights and click the ‘+’ to add it to the dashboard.
-
-![image](img/add-insight.png)
+<p align="center"><img src="img/add-insight.png" width="600"/></p> 
 
 **NOTE:** You can customize the narrative by clicking on top right arrow of the visual and
 selecting **Customize narrative**.
 
 > Note: The interesting outlier in the above graph is that on Jan23rd, 2016, you see the dip in the number of taxis across all types. Doing a quick google search for that date, gets us this weather article from NBC New York
-> ![image](https://s3.amazonaws.com/us-east-1.data-analytics/labcontent/reinvent2017content-abd313/lab2/qsimage22.PNG)
+<p align="center"><img src="https://s3.amazonaws.com/us-east-1.data-analytics/labcontent/reinvent2017content-abd313/lab2/qsimage22.PNG" width="600"/></p> 
 
 *Using Amazon QuickSight, you were able to see patterns across a time-series data by building visualizations, performing ad-hoc analysis, and quickly generating insights.*
 
