@@ -23,11 +23,12 @@
 
 Amazon Athena is an interactive query service that makes it easy to analyze data in Amazon S3 using standard SQL. Athena is serverless, so there is no infrastructure to setup or manage, and you can start analyzing data immediately. You don’t even need to load your data into Athena, it works directly with data stored in S3.
 
-In this lab, we will use Athena to explore, analyze and prepare the data for visualization in QuickSight. This lab is divided into three sections; one mandatory and two optional:
+In this lab, we will use Athena to explore, analyze and prepare the data for visualization in QuickSight. This lab is divided into Four sections; one mandatory and three optional:
 
 *  To start working with Athena, continue on this lab and follow through the different section. Next lab is [Setting up Amazon S3 and Athena for Storing Query Results](#setting-up-amazon-s3-and-athena-for-storing-query-results)
 *  [Optional] In [lab 1](../01_ingestion_with_glue/README.md), we used Glue Crawlers to create our Database and Tables. To create your Database and tables using Athena, click [here](./optional.md)
 *  [Optional] To review Athena best practices, click on [Amazon Athena Best Practices](./athena_best_practices.md)
+*  [Optional] To setup Athena with the JBDC Driver, click [here](./optional.md)
 
 
 ## Architectural Diagram
@@ -159,7 +160,7 @@ You can use an already existing bucket with a dedicated folder or you can create
 
   
 
-After initial setup you can start exploring your data with Athena. You can run normal SQL queries using the **Query Editor** in Athena console. To run your first query, follow the below:
+After initial setup you can start exploring your data with Athena. You can run ANSI SQL queries using the **Query Editor** in Athena console. To run your first query, follow the below:
 
   
 
@@ -197,8 +198,35 @@ FROM {name_of_your_table}
 
 ![image](img/athena-first-query.png)
 
-  
-  
+
+ 5. You can also run queries across multiple tables.
+
+```sql
+
+SELECT a.column1, b.column2
+
+FROM {name_of_your_table1} a, {name_of_your_table2} b
+
+WHERE a.column3=b.column4
+
+```  
+
+![image](img/athena-query-2-tables.png)  
+
+6. Amazon Athena automatically stores query results and metadata information for each query that runs in a query result location that you can specify in Amazon S3. If necessary, you can access the files in this location to work with them.
+
+Get the QueryID by navigating to the History tab. Click on the State of your query.
+
+![image](img/athena-queryid.png)
+
+Files are saved to the query result location in Amazon S3 based on the name of the query, the QueryID, and the date that the query ran. Search for the output files associated with your QueryID.
+
+![image](img/athena-query-result.png)
+
+7. You can download the query results CSV file from the query pane immediately after you run a query.
+
+![image](img/athena-query-csv.png)
+
 
 ## Amazon Athena Best Practices
 
