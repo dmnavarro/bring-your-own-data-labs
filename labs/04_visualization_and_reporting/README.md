@@ -4,9 +4,9 @@
 - [Introduction to Quicksight](#introduction-to-quicksight)
 - [How It Works](#how-it-works)
 - [Architectural Diagram](#architectural-diagram)
+- [Some Quicksight Definitions](#some-quicksight-definitions)
 - [Signing up for Amazon QuickSight Enterprise Edition](#signing-up-for-amazon-quicksight-enterprise-edition)
 - [Associating Your S3 Buckets](#associating-your-S3-buckets)
-- [Some Quicksight Definitions](#some-quicksight-definitions)
 - [Configuring Amazon QuickSight to use Amazon Athena as data source](#configuring-amazon-quicksight-to-use-amazon-athena-as-data-source)
 - [Preparing your data](#preparing-your-data)
 - [Visualizing the data using Amazon QuickSight](#visualizing-the-data-using-amazon-quicksight)
@@ -34,23 +34,40 @@ Amazon QuickSight is built with "SPICE" – a Super-fast, Parallel, In-memory Ca
 ## Architectural Diagram
 ![architecture-overview-lab2.png](https://s3.amazonaws.com/us-east-1.data-analytics/labcontent/reinvent2017content-abd313/lab2/architecture-overview-lab2.png)
 
-#### In this lab you will be using the S3 bucket with your data and the Athena table you created in the previous lab.
+
+## Some Quicksight Definitions
+
+**What is a data source and what is a dataset?**
+
+A **data source** is an external data store and you use it to access the data in this external data store eg. Amazon S3, Amazon Athena, Salesforce etc.
+
+A **data set** identifies the specific data in a data source that you want to use. For example, the data source might be a table if you are connecting to a database data source. It might be a file if you are connecting to an Amazon S3 data source. A data set also stores any data preparation you have performed on that data, such as renaming a field or changing its data type. Storing this preparation means that you don't have to reprepare the data each time you want to create an analysis based on it.
+
+**What is an Analysis, a Visual and a Dashboard?**
+
+An **analysis** is a container for a set of related visuals and stories, for example all the ones that apply to a given business goal or key performance indicator. You can use multiple data sets in an analysis, although any given visual can only use one of those data sets.
+
+A **visual** is a graphical representation of your data. You can create a wide variety of visuals in an analysis, using different datasets and visual types.
+
+A **dashboard** is a read-only snapshot of an analysis that you can share with other Amazon QuickSight users for reporting purposes. A dashboard preserves the configuration of the analysis at the time you publish it, including such things as filtering, parameters, controls, and sort order. The data used for the analysis isn't captured as part of the dashboard. When you view the dashboard, it reflects the current data in the data sets used by the analysis.
+
+
 ## Signing up for Amazon QuickSight Enterprise Edition
 
 > Amazon QuickSight offers Standard and Enterprise editions.
 > Both editions offer a full set of features for creating and sharing data visualizations.
 > But Enterprise edition offers additional features such as encryption at rest and Microsoft Active Directory integration.
 
-<p align="center"><img src="img/byod-04-registration-ed.gif"></p>
+<p align="center"><img src="img/byod-04-registration-ed.gif" width="700"></p>
 
 1. Open the [AWS Management Console for QuickSight](https://us-east-1.quicksight.aws.amazon.com/sn/start).
 <p align="center"><img src="https://s3.amazonaws.com/us-east-1.data-analytics/labcontent/reinvent2017content-abd313/lab2/qsimage1.PNG" width="700"></p>
 
-> If this is the first time you are accessing QuickSight, you will see a sign-up landing page for QuickSight.
+> &#128161; If this is the first time you are accessing QuickSight, you will see a sign-up landing page for QuickSight.
 
 2. Click on **Sign up for QuickSight**. Your AWS account number is displayed here as well for verification purposes.
 
-> There are some cases where-in Chrome browser might timeout at this step. If that's the case, try this step in Firefox/Microsoft Edge/Safari.
+> &#9888; There are some cases where-in Chrome browser might timeout at this step. If that's the case, try this step in Firefox/Microsoft Edge/Safari.
 
 3. On the next page, for the subscription type select the **"Enterprise Edition"** and click **Continue**. 
 <p align="center"><img src="img/enterprise.png" width="900"></p>
@@ -59,7 +76,7 @@ Amazon QuickSight is built with "SPICE" – a Super-fast, Parallel, In-memory Ca
    - For this workshop, we will be using Role Based Federation (SSO), make sure that the option **Role Based Federation (SSO)** is toggled.
    - Choose the **Region** where your data is located. 
    
-   > **Tip:** It is better to choose the AWS region you want to utilize for your default SPICE capacity. This is where your account’s free SPICE capacity is allocated after signing up. Note that you aren't able to change the default capacity region later, but you can always purchase additional SPICE capacity in different regions as needed.
+   > &#128161; **Tip:** It is better to choose the AWS region you want to utilize for your default SPICE capacity. This is where your account’s free SPICE capacity is allocated after signing up. Note that you aren't able to change the default capacity region later, but you can always purchase additional SPICE capacity in different regions as needed.
 
    - Enter a unique **QuickSight account name.** Your account name can only contain characters (A–Z and a–z), digits (0–9), and hyphens (-).
    - Enter a valid email for **Notification email address**. The email that you register here will receive Amazon QuickSight service and usage notifications.
@@ -72,11 +89,14 @@ Amazon QuickSight is built with "SPICE" – a Super-fast, Parallel, In-memory Ca
 5. You will be presented with a message that says **Congratulations**! **You are signed up for Amazon QuickSight!** on successful sign up. Click on **Go to Amazon QuickSight** to be directed to the QuickSight Dashboard. 
    
 ## <a name="associating-your-S3-buckets">Associating Your S3 Buckets</a>
-<p align="center"><img src="img/byod-04-associatings3-ed.gif"></p>
+> Amazon QuickSight supports a variety of data sources that you can use to provide data for analyses. This <a href="https://docs.aws.amazon.com/quicksight/latest/user/supported-data-sources.html">link</a> will provide the complete list of supported data sources but in this lab we will be using the S3 bucket with your data and the Athena table you created in the previous lab.
+
+
+<p align="center"><img src="img/byod-04-associatings3-ed.gif" width="700"></p>
 
 1. In the Amazon QuickSight dashboard, navigate to User Settings by clicking on the user icon located at the top-right section of the page. A drop down menu should show up. Under English (or your preffered language) you should be able to see the region where you are in. If it's not in N.Virginia, hover over the region name and choose N.Virginia. 
 
-> Since we are using an Enterprise Edition, in order to manage your account settings, you must temporarily change your region for your session to **US East (N. Virginia) Region**. You can change it back to the region where your data is located when you have finished editing your account settings. These settings include changing your subscription's notification email, enabling IAM access requests, editing access to AWS resources, and unsubscribing from Amazon QuickSight.
+> &#128161; Since we are using an Enterprise Edition, in order to manage your account settings, you must temporarily change your region for your session to **US East (N. Virginia) Region**. You can change it back to the region where your data is located when you have finished editing your account settings. These settings include changing your subscription's notification email, enabling IAM access requests, editing access to AWS resources, and unsubscribing from Amazon QuickSight.
 
 <p align="center"><img src="img/Quicksight-region.png" width="900" ></p>
 
@@ -102,31 +122,17 @@ Amazon QuickSight is built with "SPICE" – a Super-fast, Parallel, In-memory Ca
       - You store your Athena query results (from the previous lab)
       
       <p align="center"><img src="img/qs-workgroup-permission.png" width="500"/></p> 
-> NOTE: Make sure to tick the boxes for "Write permission for Athena Workgroup" as well.  
+> &#9888; Make sure to tick the boxes for "Write permission for Athena Workgroup" as well.  
 
 5. When you are done doing all this, click **Update** to bring you back to the user settings back.
-
-## Some Quicksight Definitions
-
-**What is a data source and what is a dataset?**
-
-A **data source** is an external data store and you use it to access the data in this external data store eg. Amazon S3, Amazon Athena, Salesforce etc.
-
-A **data set** identifies the specific data in a data source that you want to use. For example, the data source might be a table if you are connecting to a database data source. It might be a file if you are connecting to an Amazon S3 data source. A data set also stores any data preparation you have performed on that data, such as renaming a field or changing its data type. Storing this preparation means that you don't have to reprepare the data each time you want to create an analysis based on it.
-
-**What is an Analysis, a Visual and a Dashboard?**
-
-An **analysis** is a container for a set of related visuals and stories, for example all the ones that apply to a given business goal or key performance indicator. You can use multiple data sets in an analysis, although any given visual can only use one of those data sets.
-
-A **visual** is a graphical representation of your data. You can create a wide variety of visuals in an analysis, using different datasets and visual types.
-
-A **dashboard** is a read-only snapshot of an analysis that you can share with other Amazon QuickSight users for reporting purposes. A dashboard preserves the configuration of the analysis at the time you publish it, including such things as filtering, parameters, controls, and sort order. The data used for the analysis isn't captured as part of the dashboard. When you view the dashboard, it reflects the current data in the data sets used by the analysis.
 
 
 ## Configuring Amazon QuickSight to use Amazon Athena as data source
 
-> For this lab, you will need to choose the region where your data resides. 
+>  Make sure that you choose the region where your data resides. 
 <p align="center"><img src="img/oregon.png" width="800"/></p> 
+
+<p align="center"><img src="img/byod-04-athena-ds.gif" width="700"/></p> 
 
 
 1. Click on the region icon on the top-right corner of the page, and select the region where your data resides. 
@@ -213,8 +219,9 @@ start by forecasting values in future dates based on your sample data.
 
 ### Forecast Monthly Trend for your Quantity Column
 
-2. Under the **Fields list**, select your **Date** column for x-axis by clicking on the field name.
-3. Change the visual type to a line chart by selecting the line chart icon highlighted in the screenshot below under **Visual types**.
+1. Under the **Fields list**, select your **Date** column for x-axis by clicking on the field name.
+
+2. Change the visual type to a line chart by selecting the line chart icon highlighted in the screenshot below under **Visual types**.
 
 At this point, the Y-axis of the visual will be populated automatically with count of records
 that match each date individually. You can keep it that way and do forecasting for
@@ -223,14 +230,16 @@ that match each date individually. You can keep it that way and do forecasting f
 
 Before viewing the forecast, you can choose the level of aggregation you want for your **date**
 column to populate X-axis by year, month or day. 
-4. Click on the **date** field name in top **Field Wells** bar to reveal a sub-menu.
-5. Select **Aggregate:Month** to aggregate by month.
+
+3. Click on the **date** field name in top **Field Wells** bar to reveal a sub-menu.
+
+4. Select **Aggregate:Month** to aggregate by month.
 
 You can also use the slider on the X-axis to select the range of values to appear in the graph.
 <p align="center"><img src="img/prepare-forecast.png" width="900"/></p> 
 
 
-6. Click arrow in top right corner of the visual and select **Add forecast**.
+5. Click arrow in top right corner of the visual and select **Add forecast**.
 <p align="center"><img src="img/forecast.png" width="900"/></p> 
 
 <p align="center"><img src="img/end.png" width="900"/></p> 
@@ -244,6 +253,7 @@ You can apply filters to both regular and calculated fields, which include text,
 Let's apply a date filter:
 
 1. Choose **Filter** on the tool bar.
+
 2. On the **Applied filters** pane, choose **Create one**, and then choose a date field to filter on.
 <p align="center"><img src="img/filter_creation.png" width="400"/></p> 
 
@@ -261,25 +271,29 @@ Let's apply a date filter:
 ### Visualize Month over Month Quantity
 
 1. Add a new visual by duplicating the previous visual. Click on visual top right arrow and select **Duplicate visual**.
+
 2. Select **KPI** as the Visual Type (bottom left of the screen).
+
 3. In the field wells, click arrow in **Date** column to change the aggregation level to Month or as needed.
 <p align="center"><img src="img/kpi.png" width="600"/></p> 
 
-1. Now select format visual by clicking on arrow on top right corner of the KPI graph.
-2. Select **Different as percent(%)** under **comparison method** on the left.
+4. Now select format visual by clicking on arrow on top right corner of the KPI graph.
+
+5. Select **Different as percent(%)** under **comparison method** on the left.
 <p align="center"><img src="img/kpi-percent.png" width="600"/></p> 
 
 
 ### Review ML Insights
 
 1. Click the ‘Insights’ menu on the left. Notice all the suggested insights QuickSight has generated based on what has been built so far!
+
 2. Hover over any of the insights and click the ‘+’ to add it to the dashboard.
 <p align="center"><img src="img/add-insight.png" width="600"/></p> 
 
 **NOTE:** You can customize the narrative by clicking on top right arrow of the visual and
 selecting **Customize narrative**.
 
-> Note: The interesting outlier in the above graph is that on Jan23rd, 2016, you see the dip in the number of taxis across all types. Doing a quick google search for that date, gets us this weather article from NBC New York
+> &#128161; The interesting outlier in the above graph is that on Jan23rd, 2016, you see the dip in the number of taxis across all types. Doing a quick google search for that date, gets us this weather article from NBC New York
 <p align="center"><img src="https://s3.amazonaws.com/us-east-1.data-analytics/labcontent/reinvent2017content-abd313/lab2/qsimage22.PNG" width="600"/></p> 
 
 *Using Amazon QuickSight, you were able to see patterns across a time-series data by building visualizations, performing ad-hoc analysis, and quickly generating insights.*
