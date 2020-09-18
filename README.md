@@ -24,8 +24,8 @@ Bring Your Own Data (BYOD) labs help you build a serverless data pipeline based 
 
 Ready to get started ?
 
-* [Check the Data Pre-requisites](00_Prerequisites/README.md)
-* [Start lab 1 directly](01_ingestion_with_glue/README.md)
+* [Check the Data Pre-requisites](labs/00_Prerequisites/README.md)
+* [Start lab 1 directly](labs/01_ingestion_with_glue/README.md)
 
 ---
 ## License
